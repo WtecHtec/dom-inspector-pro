@@ -123,8 +123,6 @@ export function getMaxZIndex() {
     );
 }
 
-export default $;
-
 export function createElement(tag: string, attr: {[key: string]: any}, content?: string) {
     const ele = window.document.createElement(tag);
     Object.keys(attr).forEach((item) => {
