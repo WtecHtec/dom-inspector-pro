@@ -583,7 +583,7 @@
   const body = document.querySelector('body');
   const html = document.querySelector('html');
   class DomInspector {
-      constructor(options) {
+      constructor(options = {}) {
           this.theme = 'dom-inspector-theme-default';
           this.maxZIndex = getMaxZIndex() + 1;
           this.mode = 'single';

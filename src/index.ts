@@ -59,7 +59,7 @@ class DomInspector {
         env?: 'pc' | 'mobile',
         onMoveSelect?: (target: Target) => void,
         onDidSelect?: (target: Target) => void,
-    }) {
+    } = {}) {
         if (options.theme !== undefined) {
             this.theme = options.theme;
         }
