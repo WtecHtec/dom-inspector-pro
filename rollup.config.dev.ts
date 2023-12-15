@@ -5,7 +5,7 @@ import livereload from 'rollup-plugin-livereload';
 import postcss from 'rollup-plugin-postcss';
 
 const config: RollupOptions = {
-  input: 'demo/index.ts',
+  input: 'demo/index.js',
   output: [
     {
       dir: 'demo',

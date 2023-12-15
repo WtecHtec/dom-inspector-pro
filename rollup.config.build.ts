@@ -9,7 +9,9 @@ const config: RollupOptions[] = [
     input: 'src/index.ts',
     output: [
       {
-        dir: 'dist',
+        // dir: 'dist',
+         // 打包后文件
+        file: 'dist/index.js',
         format: 'umd',
         name: 'DomInspector',
       },

@@ -7,7 +7,8 @@ import {
     createElement,
     getTouchMouseTargetElement,
     getElesByXpath,
-    getXpathList
+    getXpathList,
+    getXpath
 } from './dom.js';
 import { throttle, touchAction } from './utils';
 
@@ -91,6 +92,8 @@ class DomInspector {
 
         // 在 html 中加入而非 body，从而消除对 dom 的影响 及 mutationObserver 的频繁触发
         html && html.appendChild(this.overlay);
+        // 
+        console.log('assistEle----', this.assistEle)
         html && html.appendChild(this.assistEle);
 
         this._addBodyClick();
@@ -120,6 +123,7 @@ class DomInspector {
         this.target = '';
         this.mode = mode;
         this.overlay.style.display = 'block';
+        // 监听 鼠标移动、手势滑动事件
         body && body.addEventListener(this.event, this._throttleOnMove, {
             capture: true,
             passive: this.env === 'mobile' ? false : true,
@@ -190,10 +194,12 @@ class DomInspector {
         }
     }
 
+    /** 移除圈选蒙层 */
     private _remove() {
         this.overlay.innerHTML = '';
     }
 
+    /** 圈选 逻辑 */
     private _onMove(e: MouseEvent | TouchEvent) {
         const target = getTouchMouseTargetElement(e);
 
@@ -206,7 +212,8 @@ class DomInspector {
         this._remove();
 
         this._cachedTarget = target;
-
+        const currentXpath = getXpath(target as HTMLElement, true)
+        console.log('currentXpath---', currentXpath)
         this.onMoveSelect(target);
 
         if (this.mode === 'multi') {

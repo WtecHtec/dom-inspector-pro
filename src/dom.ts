@@ -17,6 +17,7 @@ export function $(selector: string, parent?: HTMLElement) {
     return document.querySelector(selector);
 }
 
+/** 添加元素style样式  */
 export function addRule(selector: HTMLElement, cssObj: {[key: string]: any}) {
     Object.keys(cssObj).forEach((item) => {
         selector.style.setProperty(item, cssObj[item]);
@@ -132,6 +133,7 @@ export function createElement(tag: string, attr: {[key: string]: any}, content?:
     return ele;
 }
 
+/** 创建围绕的节点 */
 export function createSurroundEle(parent: HTMLElement, className?: string, content?: string) {
     const ele = createElement(
         'div',
@@ -144,6 +146,7 @@ export function createSurroundEle(parent: HTMLElement, className?: string, conte
     return ele;
 }
 
+/** 加选择蒙层节点 */
 export function addOverlay({
     target,
     root,
@@ -170,6 +173,7 @@ export function addOverlay({
         style: `z-index: ${maxZIndex}`,
     });
     wrapper.appendChild(parent);
+    // 选中元素、包裹的节点
     const overlay = {
         parent,
         content: createSurroundEle(parent, 'content'),
@@ -488,6 +492,7 @@ export function detectList(ele: Element | null) {
     return false;
 }
 
+/** 获取 圈选 目标节点元素  */
 export function getTouchMouseTargetElement(e: TouchEvent | MouseEvent) {
     if (e instanceof TouchEvent && e.touches) {
         const changedTouch = e.changedTouches[0];

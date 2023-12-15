@@ -29,7 +29,9 @@ declare class DomInspector {
     disable(): void;
     selectTarget(ele: HTMLElement): void;
     selectTargets(eles: HTMLElement[]): void;
+    /** 移除圈选蒙层 */
     private _remove;
+    /** 圈选 逻辑 */
     private _onMove;
     private _onMoveEnd;
 }

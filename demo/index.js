@@ -1,5 +1,3 @@
-
-(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 (function (factory) {
   typeof define === 'function' && define.amd ? define(factory) :
   factory();
@@ -32,7 +30,7 @@
     }
   }
 
-  var css_248z = ".dom-inspector {\n    position: fixed;\n    pointer-events: none;\n    transform-origin: 0 0;\n}\n\n.dom-inspector > div {\n    position: absolute;\n    pointer-events: none;\n}\n\n.dom-inspector-wrapper .tips {\n    max-width: 70%;\n    background-color: #333740;\n    font-size: 0;\n    line-height: 18px;\n    padding: 3px 10px;\n    position: fixed;\n    border-radius: 4px;\n    display: none;\n    pointer-events: none;\n}\n\n.dom-inspector-wrapper .tips.reverse {\n}\n\n.dom-inspector-wrapper .tips .triangle {\n    width: 0;\n    height: 0;\n    position: absolute;\n    border-top: 8px solid #333740;\n    border-right: 8px solid transparent;\n    border-bottom: 8px solid transparent;\n    border-left: 8px solid transparent;\n    left: 10px;\n    bottom: -16px;\n}\n\n.dom-inspector-wrapper .tips.reverse .triangle {\n    border-top: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-bottom: 8px solid #333740;\n    border-left: 8px solid transparent;\n    left: 10px;\n    top: -16px;\n}\n\n.dom-inspector-wrapper .tips.reverse-r .triangle {\n    left: auto;\n    right: 10px;\n}\n\n.dom-inspector-wrapper .tips > div {\n    display: inline-block;\n    vertical-align: middle;\n    font-size: 12px;\n    font-family: Consolas, Menlo, Monaco, Courier, monospace;\n    overflow: auto;\n}\n\n.dom-inspector-wrapper .tips .tag {\n    color: #e776e0;\n}\n\n.dom-inspector-wrapper .tips .id {\n    color: #eba062;\n}\n\n.dom-inspector-wrapper .tips .class {\n    color: #8dd2fb;\n}\n\n.dom-inspector-wrapper .tips .line {\n    color: #fff;\n}\n\n.dom-inspector-wrapper .tips .size {\n    color: #fff;\n}\n\n.dom-inspector-theme-default .margin {\n    background-color: rgb(246, 193, 139, 0.75);\n}\n\n.dom-inspector-theme-default .border {\n    background-color: rgba(250, 215, 138, 0.75);\n}\n\n.dom-inspector-theme-default .padding {\n    background-color: rgba(182, 200, 120, 0.75);\n}\n\n.dom-inspector-theme-default .content {\n    background-color: rgba(81, 101, 255, 0.75);\n}\n";
+  var css_248z = ".dom-inspector {\n    position: fixed;\n    pointer-events: none;\n    transform-origin: 0 0;\n}\n\n.dom-inspector > div {\n    position: absolute;\n    pointer-events: none;\n}\n\n.dom-inspector-wrapper .tips {\n    max-width: 70%;\n    background-color: #333740;\n    font-size: 0;\n    line-height: 18px;\n    padding: 3px 10px;\n    position: fixed;\n    border-radius: 4px;\n    display: none;\n    pointer-events: none;\n}\n\n\n.dom-inspector-wrapper .tips .triangle {\n    width: 0;\n    height: 0;\n    position: absolute;\n    border-top: 8px solid #333740;\n    border-right: 8px solid transparent;\n    border-bottom: 8px solid transparent;\n    border-left: 8px solid transparent;\n    left: 10px;\n    bottom: -16px;\n}\n\n.dom-inspector-wrapper .tips.reverse .triangle {\n    border-top: 8px solid transparent;\n    border-right: 8px solid transparent;\n    border-bottom: 8px solid #333740;\n    border-left: 8px solid transparent;\n    left: 10px;\n    top: -16px;\n}\n\n.dom-inspector-wrapper .tips.reverse-r .triangle {\n    left: auto;\n    right: 10px;\n}\n\n.dom-inspector-wrapper .tips > div {\n    display: inline-block;\n    vertical-align: middle;\n    font-size: 12px;\n    font-family: Consolas, Menlo, Monaco, Courier, monospace;\n    overflow: auto;\n}\n\n.dom-inspector-wrapper .tips .tag {\n    color: #e776e0;\n}\n\n.dom-inspector-wrapper .tips .id {\n    color: #eba062;\n}\n\n.dom-inspector-wrapper .tips .class {\n    color: #8dd2fb;\n}\n\n.dom-inspector-wrapper .tips .line {\n    color: #fff;\n}\n\n.dom-inspector-wrapper .tips .size {\n    color: #fff;\n}\n\n.dom-inspector-theme-default .margin {\n    background-color: rgb(246, 193, 139, 0.75);\n}\n\n.dom-inspector-theme-default .border {\n    background-color: rgba(250, 215, 138, 0.75);\n}\n\n.dom-inspector-theme-default .padding {\n    background-color: rgba(182, 200, 120, 0.75);\n}\n\n.dom-inspector-theme-default .content {\n    background-color: rgba(81, 101, 255, 0.75);\n}\n";
   styleInject(css_248z);
 
   function mixin(target, source) {
@@ -121,6 +119,7 @@
       }
       return document.querySelector(selector);
   }
+  /** 添加元素style样式  */
   function addRule(selector, cssObj) {
       Object.keys(cssObj).forEach((item) => {
           selector.style.setProperty(item, cssObj[item]);
@@ -218,6 +217,7 @@
           ele.innerHTML = content;
       return ele;
   }
+  /** 创建围绕的节点 */
   function createSurroundEle(parent, className, content) {
       const ele = createElement('div', {
           class: className,
@@ -225,6 +225,7 @@
       parent.appendChild(ele);
       return ele;
   }
+  /** 加选择蒙层节点 */
   function addOverlay({ target, root, id = 'dom-inspector', assistEle, theme = 'dom-inspector-theme-default', maxZIndex = 9999, }) {
       if (!target)
           return null;
@@ -238,6 +239,7 @@
           style: `z-index: ${maxZIndex}`,
       });
       wrapper.appendChild(parent);
+      // 选中元素、包裹的节点
       const overlay = {
           parent,
           content: createSurroundEle(parent, 'content'),
@@ -502,6 +504,7 @@
       }
       return false;
   }
+  /** 获取 圈选 目标节点元素  */
   function getTouchMouseTargetElement(e) {
       if (e instanceof TouchEvent && e.touches) {
           const changedTouch = e.changedTouches[0];
@@ -631,6 +634,8 @@
           this._onMoveEnd = this._onMoveEnd.bind(this);
           // 在 html 中加入而非 body，从而消除对 dom 的影响 及 mutationObserver 的频繁触发
           html && html.appendChild(this.overlay);
+          // 
+          console.log('assistEle----', this.assistEle);
           html && html.appendChild(this.assistEle);
           this._addBodyClick();
       }
@@ -652,6 +657,7 @@
           this.target = '';
           this.mode = mode;
           this.overlay.style.display = 'block';
+          // 监听 鼠标移动、手势滑动事件
           body && body.addEventListener(this.event, this._throttleOnMove, {
               capture: true,
               passive: this.env === 'mobile' ? false : true,
@@ -717,9 +723,11 @@
               });
           }
       }
+      /** 移除圈选蒙层 */
       _remove() {
           this.overlay.innerHTML = '';
       }
+      /** 圈选 逻辑 */
       _onMove(e) {
           const target = getTouchMouseTargetElement(e);
           if (target && this.overlay.contains(target))
@@ -729,6 +737,8 @@
               return null;
           this._remove();
           this._cachedTarget = target;
+          const currentXpath = getXpath(target, true);
+          console.log('currentXpath---', currentXpath);
           this.onMoveSelect(target);
           if (this.mode === 'multi') {
               const res = detectList(target);
